@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import DateBuilder from '../components/DateBuilder';
 import Header from '../components/Header';
-import Navigation from '../components/Navigation';
 import AppLoader from '../components/AppLoader';
 
 import LinesEllipsis from "react-lines-ellipsis";
@@ -15,9 +14,25 @@ const useStyle = makeStyles(() => ({
     alignItems: 'center',
     color: '#fff',
     padding: '40px 20px 50px 20px',
+    '@media (max-width: 400px)': {
+      padding: '20px 20px 50px 20px',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+  },
+  details: {
+    '@media (max-width: 716px)': {
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
   },
   imgTitle: {
     margin: '40px 0',
+    '@media (max-width: 716px)': {
+      fontSize: '20px',
+    },
   },
   explanation: {
     width: 'calc(50vw - 50px)',
@@ -25,6 +40,11 @@ const useStyle = makeStyles(() => ({
     lineHeight: '2',
     cursor: 'pointer',
     marginRight: '20px',
+    '@media (max-width: 716px)': {
+      width: '100%',
+      textAlign: 'center',
+      marginTop: '40px',
+    },
   },
   expandText: {
     color: 'skyblue',
@@ -34,6 +54,9 @@ const useStyle = makeStyles(() => ({
   },
   imgContainer: {
     width: 'calc(50vw - 50px)',
+    '@media (max-width: 716px)': {
+      width: '100%',
+    },
   },
   apod: {
     width: '100%',
@@ -73,12 +96,10 @@ const ImageOfTheDay = () => {
   return (
     <div className={classes.apod}>
       <Header title='Astronomy Picture Of The Day' />
-      <Navigation />
       <div className={classes.container}>
         <div className={classes.details}>
           <h2 className={classes.imgTitle}>{data.title}</h2>
           <DateBuilder
-            className={classes.date}
             date={data.date}
           />
           {data.copyright && <p className={classes.copyright}>Photo by: {data.copyright}</p>}
@@ -99,14 +120,16 @@ const ImageOfTheDay = () => {
                 read more...
               </p>
             </div>)
-            : (<div
-              onClick={expandText}
-              className={classes.explanation}>
-              {data.explanation}
-              <p className={classes.expandText}>
-                read less...
-              </p>
-            </div>)
+            : (
+              <div
+                onClick={expandText}
+                className={classes.explanation}>
+                {data.explanation}
+                <p className={classes.expandText}>
+                  read less...
+                </p>
+              </div>
+            )
           }
         </div>
         <div className={classes.imgContainer}>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DateBuilder from '../components/DateBuilder';
 import Header from '../components/Header';
-import Navigation from '../components/Navigation';
 import AppLoader from '../components/AppLoader';
 
 import axios from 'axios';
@@ -67,6 +66,9 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: '20px',
+    '@media (max-width: 716px)': {
+      marginTop: '20px',
+    },
   },
   paginationIcon: {
     width: '40px',
@@ -78,7 +80,7 @@ const useStyles = makeStyles(() => ({
     border: 'none',
     borderRadius: '20px',
     backgroundColor: 'transparent',
-    margin: '0 20px',
+    margin: '0 30px',
     cursor: 'pointer',
     '&:hover': {
       backgroundColor: 'rgba(255, 255, 255, 0.2)'
@@ -120,7 +122,6 @@ const MarsRover = () => {
   return (
     <div className={classes.marsRover}>
       <Header title='Mars Rover' />
-      <Navigation />
       <div className={classes.pagination}>
         <button className={classes.paginationIcon} onClick={handlePageChangePrev}><ChevronLeftIcon /></button>
         {page}
@@ -134,7 +135,7 @@ const MarsRover = () => {
             </div>
             <div className={classes.details}>
               <h3 className={classes.roverName}>{photo.rover.name}</h3>
-              <p className={classes.date}>{<DateBuilder date={photo.earth_date} />}</p>
+              <DateBuilder date={photo.earth_date} />
               <h3>Sol: {photo.sol}</h3>
             </div>
           </li>

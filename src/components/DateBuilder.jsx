@@ -1,5 +1,17 @@
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyle = makeStyles(() => ({
+
+  date: {
+    '@media (max-width: 400px)': {
+      textAlign: 'center',
+    },
+  },
+}))
+
 const DateBuilder = (props) => {
   const { date } = props
+  const classes = useStyle();
 
   const year = date.slice(0, 4);
   let month = date.slice(5, 7);
@@ -46,7 +58,7 @@ const DateBuilder = (props) => {
   }
 
   return (
-    day + ' ' + month + ' ' + year
+    <div className={classes.date}>{day + ' ' + month + ' ' + year}</div>
   );
 
 }

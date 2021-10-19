@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DateBuilder from '../components/DateBuilder';
 import Header from '../components/Header';
-import Navigation from '../components/Navigation';
 import AppLoader from '../components/AppLoader';
 
 import axios from 'axios';
@@ -16,6 +15,9 @@ const useStyles = makeStyles(() => ({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     alignItems: 'center',
+    '@media (max-width: 716px)': {
+      paddingTop: '0px',
+    },
   },
   card: {
     width: '300px',
@@ -102,7 +104,7 @@ const ApodSelection = () => {
   const handleAddPic = () => {
     setIsRefreshed(!isRefreshed)
   }
-
+  console.log(datas)
   if (isLoading) {
     return <AppLoader />
   }
@@ -110,7 +112,6 @@ const ApodSelection = () => {
   return (
     <div className={classes.apodSelection}>
       <Header title='Picture Of The Day Selection' />
-      <Navigation />
       <ul className={classes.cardList}>
         {datas.map(data => (
           <li key={data.title} className={classes.card} onClick={(e) => console.log()}>
@@ -119,7 +120,7 @@ const ApodSelection = () => {
             </div>
             <div className={classes.details}>
               <h3 className={classes.title}>{data.title}</h3>
-              <p className={classes.date}>{<DateBuilder date={data.date} />}</p>
+              <DateBuilder date={data.date} />
               {data.copyright && <p className={classes.copyright}>Photo by: {data.copyright}</p>}
             </div>
           </li>
