@@ -14,7 +14,7 @@ const useStyle = makeStyles(() => ({
     alignItems: 'center',
     color: '#fff',
     padding: '40px 20px 50px 20px',
-    '@media (max-width: 400px)': {
+    '@media (max-width: 900px)': {
       padding: '20px 20px 50px 20px',
       flexDirection: 'column',
       justifyContent: 'center',
@@ -22,7 +22,7 @@ const useStyle = makeStyles(() => ({
     },
   },
   details: {
-    '@media (max-width: 716px)': {
+    '@media (max-width: 900px)': {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
@@ -30,7 +30,7 @@ const useStyle = makeStyles(() => ({
   },
   imgTitle: {
     margin: '40px 0',
-    '@media (max-width: 716px)': {
+    '@media (max-width: 900px)': {
       fontSize: '20px',
     },
   },
@@ -40,7 +40,7 @@ const useStyle = makeStyles(() => ({
     lineHeight: '2',
     cursor: 'pointer',
     marginRight: '20px',
-    '@media (max-width: 716px)': {
+    '@media (max-width: 900px)': {
       width: '100%',
       textAlign: 'center',
       marginTop: '40px',
@@ -54,7 +54,7 @@ const useStyle = makeStyles(() => ({
   },
   imgContainer: {
     width: 'calc(50vw - 50px)',
-    '@media (max-width: 716px)': {
+    '@media (max-width: 900px)': {
       width: '100%',
     },
   },
