@@ -119,7 +119,7 @@ const MarsRover = () => {
 
   return (
     <div className={classes.marsRover}>
-      <Header title='Home' />
+      <Header title='Mars Rover' />
       <Navigation />
       <div className={classes.pagination}>
         <button className={classes.paginationIcon} onClick={handlePageChangePrev}><ChevronLeftIcon /></button>

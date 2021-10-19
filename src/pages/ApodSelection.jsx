@@ -109,7 +109,7 @@ const ApodSelection = () => {
 
   return (
     <div className={classes.apodSelection}>
-      <Header title='Home' />
+      <Header title='Picture Of The Day Selection' />
       <Navigation />
       <ul className={classes.cardList}>
         {datas.map(data => (
