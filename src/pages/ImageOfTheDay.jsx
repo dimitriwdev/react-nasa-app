@@ -10,20 +10,17 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyle = makeStyles(() => ({
   container: {
     display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: 'column',
     color: '#fff',
     padding: '40px 20px 50px 20px',
     '@media (max-width: 900px)': {
       padding: '20px 20px 50px 20px',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
     },
   },
-  details: {
+  apodDetails: {
+    display: 'flex',
+    flexDirection: 'column',
     '@media (max-width: 900px)': {
-      flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
     },
@@ -31,19 +28,28 @@ const useStyle = makeStyles(() => ({
   imgTitle: {
     margin: '40px 0',
     '@media (max-width: 900px)': {
-      fontSize: '20px',
+      fontSize: '18px',
+      margin: '20px 0',
+    },
+  },
+  content: {
+    display: 'flex',
+    alignItems: 'center',
+    paddingTop: '40px',
+    '@media (max-width: 900px)': {
+      flexDirection: 'column',
     },
   },
   explanation: {
     width: 'calc(50vw - 50px)',
-    marginTop: '20px',
+    paddingLeft: '50px',
     lineHeight: '2',
     cursor: 'pointer',
-    marginRight: '20px',
     '@media (max-width: 900px)': {
       width: '100%',
+      paddingLeft: '0px',
+      paddingTop: '40px',
       textAlign: 'center',
-      marginTop: '40px',
     },
   },
   expandText: {
@@ -53,6 +59,7 @@ const useStyle = makeStyles(() => ({
     justifyContent: 'center',
   },
   imgContainer: {
+    flexGrow: 1,
     width: 'calc(50vw - 50px)',
     '@media (max-width: 900px)': {
       width: '100%',
@@ -63,7 +70,10 @@ const useStyle = makeStyles(() => ({
     borderRadius: '20px'
   },
   copyright: {
-    margin: '20px 0',
+    margin: '40px 0 0 0',
+    '@media (max-width: 900px)': {
+      margin: '20px 0 0 0',
+    },
   },
 }))
 
@@ -97,15 +107,20 @@ const ImageOfTheDay = () => {
     <div className={classes.apod}>
       <Header title='Astronomy Picture Of The Day' />
       <div className={classes.container}>
-        <div className={classes.details}>
+        <div className={classes.apodDetails}>
           <h2 className={classes.imgTitle}>{data.title}</h2>
           <DateBuilder
             date={data.date}
           />
           {data.copyright && <p className={classes.copyright}>Photo by: {data.copyright}</p>}
-          <div className={classes.explanation}>
-            {data.explanation}
+        </div>
+        <div className={classes.content}>
+          <div className={classes.imgContainer}>
+            <img className={classes.apod} src={`${data.url}`} alt={(data.title + ' image')} />
           </div>
+          {/* <div className={classes.explanation}>
+            {data.explanation}
+          </div> */}
           {isEllipsis
             ?
             (<div
@@ -114,7 +129,7 @@ const ImageOfTheDay = () => {
               <LinesEllipsis
                 text={data.explanation}
                 basedOn="letters"
-                maxLine={3}
+                maxLine={5}
               />
               <p className={classes.expandText}>
                 read more...
@@ -131,9 +146,6 @@ const ImageOfTheDay = () => {
               </div>
             )
           }
-        </div>
-        <div className={classes.imgContainer}>
-          <img className={classes.apod} src={`${data.url}`} alt={(data.title + ' image')} />
         </div>
       </div>
     </div>

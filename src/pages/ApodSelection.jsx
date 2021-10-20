@@ -100,6 +100,7 @@ const ApodSelection = () => {
       })
   }, [isRefreshed]);
 
+  console.log(datas)
 
   const handleAddPic = () => {
     setIsRefreshed(!isRefreshed)
@@ -113,7 +114,7 @@ const ApodSelection = () => {
     <div className={classes.apodSelection}>
       <Header title='Picture Of The Day Selection' />
       <ul className={classes.cardList}>
-        {datas.map(data => (
+        {datas.filter(data => data.media_type === 'image').map(data => (
           <li key={data.title} className={classes.card}>
             <div className={classes.imgContainer}>
               <div className={classes.apod} style={{ backgroundImage: `url(${data.url})` }} />
