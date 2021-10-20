@@ -131,7 +131,12 @@ const MarsRover = () => {
       <ul className={classes.cardList}>
         {datas.photos.map(photo => (
           <li key={photo.id} className={classes.card}>
-            <Modal data={photo} />
+            <Modal
+              img={photo.img_src}
+              title={photo.rover.name}
+              date={photo.earth_date}
+              sol={photo.sol}
+            />
           </li>
         )
         )}

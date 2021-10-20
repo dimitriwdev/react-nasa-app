@@ -97,20 +97,14 @@ const useStyles = makeStyles(() => ({
 }))
 
 const Modal = (props) => {
-  const { data } = props;
+  const { img, title, date, copyright, sol } = props
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleShowDialog = () => {
-    console.log('clicked image', data.title)
     setIsOpen(!isOpen);
   }
 
-  const img = data.url || data.img_src;
-  const title = data.title || data.rover.name;
-  const date = data.date || data.earth_date;
-  const copyright = data.copyright;
-  const sol = data.sol;
   return (
     <div className={classes.apod} style={{ backgroundImage: `url(${img})` }} onClick={handleShowDialog}>
       {
@@ -128,12 +122,12 @@ const Modal = (props) => {
                   <Typography variant="h5" className={classes.title}>{title}</Typography>
                   <DateBuilder date={date} />
                   {
-                    data.copyright
+                    copyright
                       ? <Typography variant="body2" className={classes.copyright}>Photo by: {copyright}</Typography>
                       : null
                   }
                   {
-                    data.sol
+                    sol
                       ? <Typography variant='body1' className={classes.sol}>Sol: {sol}</Typography>
                       : null
                   }

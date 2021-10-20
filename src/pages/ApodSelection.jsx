@@ -85,7 +85,11 @@ const ApodSelection = () => {
         {datas.filter(data => data.media_type === 'image')
           .map(data => (
             <li key={data.title} className={classes.card}>
-              <Modal data={data} />
+              <Modal
+                img={data.url}
+                title={data.title}
+                date={data.date}
+                copyright={data.copyright} />
             </li>
           )
           )}
