@@ -101,8 +101,6 @@ const Modal = (props) => {
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log('data', data);
-
   const handleShowDialog = () => {
     console.log('clicked image', data.title)
     setIsOpen(!isOpen);
@@ -111,7 +109,7 @@ const Modal = (props) => {
   const img = data.url || data.img_src;
   const title = data.title || data.rover.name;
   const date = data.date || data.earth_date;
-  const copyright = data.coyright;
+  const copyright = data.copyright;
   const sol = data.sol;
   return (
     <div className={classes.apod} style={{ backgroundImage: `url(${img})` }} onClick={handleShowDialog}>
@@ -132,9 +130,12 @@ const Modal = (props) => {
                   {
                     data.copyright
                       ? <Typography variant="body2" className={classes.copyright}>Photo by: {copyright}</Typography>
-                      : data.sol
-                        ? <Typography variant='body1' className={classes.sol}>Sol: {sol}</Typography>
-                        : null
+                      : null
+                  }
+                  {
+                    data.sol
+                      ? <Typography variant='body1' className={classes.sol}>Sol: {sol}</Typography>
+                      : null
                   }
                 </div>
               </div>
