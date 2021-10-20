@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import DateBuilder from '../components/DateBuilder';
 import Header from '../components/Header';
 import AppLoader from '../components/AppLoader';
+import Modal from '../components/Modal';
 
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Typography from "@material-ui/core/Typography";
+
 
 const useStyles = makeStyles(() => ({
   cardList: {
     color: '#fff',
     padding: '20px',
-    width: '95vw',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
@@ -27,39 +29,6 @@ const useStyles = makeStyles(() => ({
     listStyle: 'none',
     borderRadius: '10px',
     boxShadow: '3px 3px rgba(50, 50, 50, 0.2),',
-    position: 'relative',
-  },
-  imgContainer: {
-    width: '100%',
-    height: '100%',
-    borderRadius: '20px',
-    position: 'relative',
-  },
-  apod: {
-    width: '100%',
-    height: '100%',
-    borderRadius: '20px',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  },
-  details: {
-    transition: '0.5s ease',
-    opacity: 0,
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    height: '90%',
-    width: '90%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    padding: '40px',
-    '&:hover': {
-      opacity: 1,
-      backgroundColor: 'rgba(0, 0, 0, 0.5)'
-    }
   },
   buttonContainer: {
     display: 'flex',
@@ -69,15 +38,16 @@ const useStyles = makeStyles(() => ({
   moreButton: {
     width: '200px',
     margin: '0 auto',
+    textTransform: 'capitalize',
+    backgroundColor: 'rgba(50, 50, 50, 0.5)',
     border: 'none',
-    background: 'transparent',
     color: '#fff',
     cursor: 'pointer',
     transition: '0.5s ease',
     padding: '10px',
     borderRadius: '10px',
     '&:hover': {
-      backgroundColor: 'rgba(255, 255, 255, 0.3)'
+      backgroundColor: 'rgba(255, 255, 255, 0.3)',
     }
   },
 }))
@@ -100,8 +70,6 @@ const ApodSelection = () => {
       })
   }, [isRefreshed]);
 
-  console.log(datas)
-
   const handleAddPic = () => {
     setIsRefreshed(!isRefreshed)
   }
@@ -114,22 +82,16 @@ const ApodSelection = () => {
     <div className={classes.apodSelection}>
       <Header title='Picture Of The Day Selection' />
       <ul className={classes.cardList}>
-        {datas.filter(data => data.media_type === 'image').map(data => (
-          <li key={data.title} className={classes.card}>
-            <div className={classes.imgContainer}>
-              <div className={classes.apod} style={{ backgroundImage: `url(${data.url})` }} />
-            </div>
-            <div className={classes.details}>
-              <h3 className={classes.title}>{data.title}</h3>
-              <DateBuilder date={data.date} />
-              {data.copyright && <p className={classes.copyright}>Photo by: {data.copyright}</p>}
-            </div>
-          </li>
-        )
-        )}
+        {datas.filter(data => data.media_type === 'image')
+          .map(data => (
+            <li key={data.title} className={classes.card}>
+              <Modal data={data} />
+            </li>
+          )
+          )}
       </ul>
       <div className={classes.buttonContainer}>
-        <button className={classes.moreButton} onClick={handleAddPic}>See more</button>
+        <Button className={classes.moreButton} onClick={handleAddPic}><Typography variant="body1">See more</Typography></Button>
       </div>
     </div >
   )

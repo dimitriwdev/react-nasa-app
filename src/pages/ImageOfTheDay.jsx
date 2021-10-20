@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import AppLoader from '../components/AppLoader';
 
 import LinesEllipsis from "react-lines-ellipsis";
+import Typography from "@material-ui/core/Typography";
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyle = makeStyles(() => ({
@@ -26,7 +27,7 @@ const useStyle = makeStyles(() => ({
     },
   },
   imgTitle: {
-    margin: '40px 0',
+    margin: '40px 0 20px 0',
     '@media (max-width: 900px)': {
       fontSize: '18px',
       margin: '20px 0',
@@ -70,7 +71,7 @@ const useStyle = makeStyles(() => ({
     borderRadius: '20px'
   },
   copyright: {
-    margin: '40px 0 0 0',
+    margin: '20px 0 0 0',
     '@media (max-width: 900px)': {
       margin: '20px 0 0 0',
     },
@@ -108,19 +109,16 @@ const ImageOfTheDay = () => {
       <Header title='Astronomy Picture Of The Day' />
       <div className={classes.container}>
         <div className={classes.apodDetails}>
-          <h2 className={classes.imgTitle}>{data.title}</h2>
+          <Typography variant="h5" className={classes.imgTitle}>{data.title}</Typography>
           <DateBuilder
             date={data.date}
           />
-          {data.copyright && <p className={classes.copyright}>Photo by: {data.copyright}</p>}
+          {data.copyright && <Typography variant="body2" className={classes.copyright}>Photo by: {data.copyright}</Typography>}
         </div>
         <div className={classes.content}>
           <div className={classes.imgContainer}>
             <img className={classes.apod} src={`${data.url}`} alt={(data.title + ' image')} />
           </div>
-          {/* <div className={classes.explanation}>
-            {data.explanation}
-          </div> */}
           {isEllipsis
             ?
             (<div
@@ -131,18 +129,18 @@ const ImageOfTheDay = () => {
                 basedOn="letters"
                 maxLine={5}
               />
-              <p className={classes.expandText}>
+              <Typography variant="body2" className={classes.expandText}>
                 read more...
-              </p>
+              </Typography>
             </div>)
             : (
               <div
                 onClick={expandText}
                 className={classes.explanation}>
                 {data.explanation}
-                <p className={classes.expandText}>
+                <Typography variant="body2" className={classes.expandText}>
                   read less...
-                </p>
+                </Typography>
               </div>
             )
           }

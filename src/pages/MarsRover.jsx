@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import DateBuilder from '../components/DateBuilder';
+import Modal from '../components/Modal';
 import Header from '../components/Header';
 import AppLoader from '../components/AppLoader';
 
 import axios from 'axios';
+import Typography from "@material-ui/core/Typography";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/core/styles';
@@ -130,21 +131,14 @@ const MarsRover = () => {
       <ul className={classes.cardList}>
         {datas.photos.map(photo => (
           <li key={photo.id} className={classes.card}>
-            <div className={classes.imgContainer}>
-              <div className={classes.pic} style={{ backgroundImage: `url(${photo.img_src})` }} />
-            </div>
-            <div className={classes.details}>
-              <h3 className={classes.roverName}>{photo.rover.name}</h3>
-              <DateBuilder date={photo.earth_date} />
-              <h3>Sol: {photo.sol}</h3>
-            </div>
+            <Modal data={photo} />
           </li>
         )
         )}
       </ul>
       <div className={classes.pagination}>
         <button className={classes.paginationIcon} onClick={handlePageChangePrev}><ChevronLeftIcon /></button>
-        {page}
+        <Typography variant="body1">{page}</Typography>
         <button className={classes.paginationIcon} onClick={handlePageChangeNext}><ChevronRightIcon /></button>
       </div>
     </div >

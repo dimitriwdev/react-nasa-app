@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import nasaLogo from '../assets/nasaLogo.png'
+
 import { NavLink } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import useMediaQuery from "../customHooks/useMediaQuery";
 import MenuIcon from '@material-ui/icons/Menu';
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(() => ({
   appHeader: {
@@ -67,7 +69,7 @@ const useStyles = makeStyles(() => ({
 const Header = ({ title }) => {
   const classes = useStyles();
   const [toggleMenu, setToggleMenu] = useState(false);
-  let isPageWide = useMediaQuery("(min-width:716px)");
+  let isPageWide = useMediaQuery('(min-width:900px)');
 
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu)
@@ -76,17 +78,17 @@ const Header = ({ title }) => {
   return (
     <div className={classes.appHeader}>
       <img className={classes.logo} src={nasaLogo} alt='nasa-logo' />
-      <h1 className={classes.title}>{title}</h1>
+      <Typography variant='h4' className={classes.title}>{title}</Typography>
       {isPageWide ?
         <div className={classes.navigation}>
           <NavLink exact to="/" className={classes.menuDesktopLink} activeClassName={classes.navActive}>
-            Picture Of The Day
+            <Typography variant='body1'>Picture Of The Day</Typography>
           </NavLink>
           <NavLink exact to="/mars-rover" className={classes.menuDesktopLink} activeClassName={classes.navActive}>
-            Mars Rover
+            <Typography variant='body1'>Mars Rover</Typography>
           </NavLink>
           <NavLink exact to="/apod" className={classes.menuDesktopLink} activeClassName={classes.navActive}>
-            Picture Of The Day Selection
+            <Typography variant='body1'>Picture Of The Day Selection</Typography>
           </NavLink>
         </div>
         : <div className={classes.mobileNavigation}>
@@ -94,13 +96,13 @@ const Header = ({ title }) => {
           {toggleMenu ?
             <div className={classes.mobileMenu}>
               <NavLink exact to="/" className={classes.menuMobileLink} activeClassName={classes.navActive}>
-                Picture Of The Day
+                <Typography variant='body1'>Picture Of The Day</Typography>
               </NavLink>
               <NavLink exact to="/mars-rover" className={classes.menuMobileLink} activeClassName={classes.navActive}>
-                Mars Rover
+                <Typography variant='body1'>Mars Rover</Typography>
               </NavLink>
               <NavLink exact to="/apod" className={classes.menuMobileLink} activeClassName={classes.navActive}>
-                Picture Of The Day Selection
+                <Typography variant='body1'>Picture Of The Day Selection</Typography>
               </NavLink>
             </div>
             : null

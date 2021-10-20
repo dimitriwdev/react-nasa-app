@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import Typography from "@material-ui/core/Typography";
 
 const useStyle = makeStyles(() => ({
 
@@ -58,7 +59,8 @@ const DateBuilder = (props) => {
   }
 
   return (
-    <div className={classes.date}>{day + ' ' + month + ' ' + year}</div>
+    // <div className={classes.date}>{day + ' ' + month + ' ' + year}</div>
+    <Typography className={classes.date} variant="body1">{day + ' ' + month + ' ' + year}</Typography>
   );
 
 }
