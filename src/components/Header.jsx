@@ -48,6 +48,7 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     justifyContent: 'center',
     fontWeight: 'bold',
+    marginBottom: '20px',
   },
   menuDesktopLink: {
     margin: '20px',
