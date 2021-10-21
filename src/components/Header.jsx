@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import nasaLogo from '../assets/nasaLogo.png'
 
 import { NavLink } from "react-router-dom";
-// import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import useMediaQuery from "../customHooks/useMediaQuery";
 import MenuIcon from '@material-ui/icons/Menu';

@@ -4,7 +4,6 @@ import ImageOfTheDay from './pages/ImageOfTheDay';
 import MarsRover from './pages/MarsRover'
 import ApodSelection from "./pages/ApodSelection";
 import PageNotFound from './pages/PageNotFound';
-// import { MemoryRouter as Router, Route } from "react-router-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 
