@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Modal from '../components/Modal';
 import Header from '../components/Header';
 import AppLoader from '../components/AppLoader';
+import ScrollToTop from '../components/ScrollToTop';
 
 import axios from 'axios';
 import Typography from "@material-ui/core/Typography";
@@ -67,7 +68,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: '20px',
-    '@media (max-width: 716px)': {
+    '@media (max-width: 900px)': {
       marginTop: '20px',
     },
   },
@@ -128,6 +129,7 @@ const MarsRover = () => {
         {page}
         <button className={classes.paginationIcon} onClick={handlePageChangeNext}><ChevronRightIcon /></button>
       </div>
+      <ScrollToTop />
       <ul className={classes.cardList}>
         {datas.photos.map(photo => (
           <li key={photo.id} className={classes.card}>
