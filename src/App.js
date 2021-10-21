@@ -4,8 +4,8 @@ import ImageOfTheDay from './pages/ImageOfTheDay';
 import MarsRover from './pages/MarsRover'
 import ApodSelection from "./pages/ApodSelection";
 import PageNotFound from './pages/PageNotFound';
-
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { MemoryRouter as Router, Route } from "react-router-dom";
+// import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
@@ -24,14 +24,14 @@ function App() {
 
   return (
     <div className={classes.app}>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={ImageOfTheDay} />
-          <Route exact path="/mars-rover" component={MarsRover} />
-          <Route exact path="/apod" component={ApodSelection} />
-          <Route component={PageNotFound} />
-        </Switch>
-      </BrowserRouter>
+      {/* <BrowserRouter> */}
+      <Router>
+        <Route exact path="/" component={ImageOfTheDay} />
+        <Route exact path="/mars-rover" component={MarsRover} />
+        <Route exact path="/apod" component={ApodSelection} />
+        <Route component={PageNotFound} />
+      </Router>
+      {/* </BrowserRouter> */}
     </div >
   );
 }
