@@ -59,7 +59,6 @@ const DateBuilder = (props) => {
   }
 
   return (
-    // <div className={classes.date}>{day + ' ' + month + ' ' + year}</div>
     <Typography className={classes.date} variant="body1">{day + ' ' + month + ' ' + year}</Typography>
   );
 
